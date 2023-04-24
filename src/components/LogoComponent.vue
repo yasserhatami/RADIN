@@ -1,0 +1,22 @@
+<template>
+  <v-card class="card d-flex justify-center align-center w-100">
+    <v-img class="img" :src="require('@/assets/images/logo.png')"></v-img>
+  </v-card>
+</template>
+<script>
+export default {
+  name: "LogoText"
+};
+</script>
+<style scoped>
+
+.card {
+  background-color: transparent;
+  position: relative;
+}
+
+
+
+
+
+</style>

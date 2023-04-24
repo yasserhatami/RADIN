@@ -10,6 +10,10 @@ import vuetify from './plugins/vuetify'
 import { loadFonts } from './plugins/webfontloader'
 loadFonts()
 
+//import sass
+import '@/assets/sass/main.scss'
+
+
 createApp(App)
   .use(router)
   .use(vuetify)

@@ -1,11 +1,11 @@
 <template>
-    <v-container class="pt-0 px-0">
+    <v-container fluid class="pt-0 px-0">
     <v-row class="ma-0 pa-0">
-      <v-col class="ma-0 pa-0">
+      <v-col class="ma-0 pa-0 ">
         <v-card  class="card-image h-screen w-100 border-none" >
           <v-img class="" cover :src="require('@/assets/loginbg.png')" >
             <v-row  class=" h-100 pa-0 ma-0">
-              <v-col cols="6" class="h-100 pa-0 ma-0">
+              <v-col cols="12" md="6" class="h-100 pa-0 ma-0">
                 <div class="w-100 h-100 d-flex justify-center align-center ">
                   <div class="formraper">
                     <formcomponent></formcomponent>
@@ -28,7 +28,7 @@
   </v-container>
 </template>
 <script>
-import logo from "@/components/Logo&text.vue";
+import logo from "@/components/LogoComponent.vue";
 import formcomponent from "@/components/FormComponent.vue"
 export default {
   name: "LogIn",
@@ -52,7 +52,6 @@ export default {
   height: 98%;
 }
 .formraper{
-  width: 70%;
-  height: 53%;
+  width: 80%;
 }
 </style>
