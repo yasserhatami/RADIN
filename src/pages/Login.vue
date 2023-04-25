@@ -8,14 +8,14 @@
               <v-col cols="12" md="6" class="h-100 pa-0 ma-0">
                 <div class="w-100 h-100 d-flex justify-center align-center ">
                   <div class="formraper">
-                    <formcomponent></formcomponent>
+                    <formcomponent/>
                   </div>
                 </div>
               </v-col>
               <v-col cols="6" class="blur h-100  pa-0 ma-0">
                 <div class="w-100  d-flex justify-center align-center logocontainer">
                   <div class="logoraper">
-                    <logo class=" w-100 h-100"/>
+                    <logocomponent class=" w-100 h-100"/>
                   </div>  
                 </div>
               </v-col>
@@ -28,13 +28,13 @@
   </v-container>
 </template>
 <script>
-import logo from "@/components/LogoComponent.vue";
-import formcomponent from "@/components/FormComponent.vue"
+import logocomponent from "@/components/authentication/LogoComponent.vue";
+import formcomponent from "@/components/authentication/FormComponent.vue"
 export default {
   name: "LogIn",
   components: {
     formcomponent,
-    logo,
+    logocomponent,
     
   }
 };
