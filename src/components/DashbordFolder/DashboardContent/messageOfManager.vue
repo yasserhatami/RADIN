@@ -1,12 +1,12 @@
 <template>
   <div>
-
+    salaaaaaaaaaaaaaam
   </div>
 </template>
 
 <script>
 export default {
-name:"DateAndTime"
+
 }
 </script>
 

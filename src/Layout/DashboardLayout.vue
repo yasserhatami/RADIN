@@ -3,11 +3,13 @@
     <v-layout>
       <v-navigation-drawer
         dir="rtl"
+        width="300"
         color="primary"
         v-model="flag"
         location="right"
         temporary
       >
+        <sidebarcomponent />
       </v-navigation-drawer>
 
       <v-app-bar class="pt-0 ccc" color="primary" :elevation="2">
@@ -15,7 +17,7 @@
           <div class="d-flex align-center h-100">
             <p class="px-3">Radinkhodro</p>
             <div class="bg-secondary d-flex align-center px-3 h-100">
-              1401/12/02 | 10:10
+              <DtaeAndTimeComponent />
             </div>
           </div>
 
@@ -45,11 +47,17 @@
 </template>
 
 <script>
+import DtaeAndTimeComponent from "@/components/DashbordFolder/date/DateAndTime.vue";
+import Sidebarcomponent from "@/components/DashbordFolder/sidebar/sidebarComponent.vue";
 export default {
   data() {
     return {
       flag: false,
     };
+  },
+  components: {
+    DtaeAndTimeComponent,
+    Sidebarcomponent,
   },
 };
 </script>

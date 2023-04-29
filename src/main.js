@@ -14,7 +14,10 @@ loadFonts()
 import '@/assets/sass/main.scss'
 
 
-createApp(App)
-  .use(router)
+
+
+const app = createApp(App)
+// app.use(Vue3PersianDatetimePicker)
+app.use(router)
   .use(vuetify)
   .mount('#app')
