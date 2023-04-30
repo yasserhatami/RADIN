@@ -22,8 +22,9 @@
           </div>
 
           <div class="d-flex align-center h-100">
-            <div class="d-flex align-center h-100">
+            <div class="d-flex align-center w-25 h-100">
               <v-icon
+                class="w-0"
                 @click="flag = true"
                 color="success"
                 icon="mdi-menu-left"
@@ -32,7 +33,7 @@
             </div>
             <v-img
               style="width: 60px"
-              class="img sss m-r8 pr-3"
+              class="img sss mr-6 pr-3"
               :src="require('@/assets/images/Ellipse 1.png')"
             ></v-img>
           </div>
