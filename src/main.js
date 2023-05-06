@@ -16,6 +16,8 @@ import '@/assets/sass/main.scss'
 
 
 
+
+
 const app = createApp(App)
 // app.use(Vue3PersianDatetimePicker)
 app.use(router)

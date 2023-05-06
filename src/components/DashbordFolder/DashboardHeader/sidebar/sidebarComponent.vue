@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import card from "@/components/DashbordFolder/sidebar/card.vue";
-import listofside from "@/components/DashbordFolder/sidebar/listOfSide.vue";
+import card from "@/components/DashbordFolder/DashboardHeader/sidebar/card.vue";
+import listofside from "@/components/DashbordFolder/DashboardHeader/sidebar/listOfSide.vue";
 export default {
   name: "SidebarComponent",
   components: {

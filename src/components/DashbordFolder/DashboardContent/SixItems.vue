@@ -83,6 +83,7 @@ span {
 @media only screen and (min-width: 1000px) {
   .item {
     height: 120px;
+    background-repeat: repeat-x;
   }
 }
 @media only screen and (min-width: 1200px) {

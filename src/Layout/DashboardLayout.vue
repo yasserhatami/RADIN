@@ -48,8 +48,8 @@
 </template>
 
 <script>
-import DtaeAndTimeComponent from "@/components/DashbordFolder/date/DateAndTime.vue";
-import Sidebarcomponent from "@/components/DashbordFolder/sidebar/sidebarComponent.vue";
+import DtaeAndTimeComponent from "@/components/DashbordFolder/DashboardHeader/date/DateAndTime.vue";
+import Sidebarcomponent from "@/components/DashbordFolder/DashboardHeader/sidebar/sidebarComponent.vue";
 export default {
   data() {
     return {
