@@ -1,36 +1,31 @@
 <template>
-  <v-container class="" dir="rtl" fluid>
-    <v-row class=" ">
+  <v-container class dir="rtl" fluid>
+    <v-row class>
       <v-col cols="4" class="aa">
-        <div
-          class="item d-flex justify-center align-center text-center px-2 "
-        >
-        <span>ثبت قبض</span>
+        <div class="item d-flex justify-center align-center text-center px-2">
+          <span>ثبت قبض</span>
         </div>
+      </v-col>
+
+      <v-col cols="4" class="aa">
+        <router-link to="/ContractList">
+          <div class="item d-flex justify-center align-center text-center px-2">
+            <span>ثبت قرارداد</span>
+          </div>
+        </router-link>
       </v-col>
 
       <v-col cols="4" class="aa">
         <div class="item d-flex justify-center align-center text-center px-2">
-          <span>ثبت قرارداد </span>
-        </div>
-      </v-col>
-
-      <v-col cols="4" class="aa">
-        <div
-          class="item  d-flex justify-center align-center text-center px-2"
-        >
-          
-        <span> تمدید قرارداد </span>
+          <span>تمدید قرارداد</span>
         </div>
       </v-col>
     </v-row>
 
-    <v-row class=" ">
+    <v-row class>
       <v-col cols="4" class="aa">
-        <div
-          class="item d-flex justify-center align-center text-center px-2 "
-        >
-          <span> جست و جوی قرارداد </span>
+        <div class="item d-flex justify-center align-center text-center px-2">
+          <span>جست و جوی قرارداد</span>
         </div>
       </v-col>
 
@@ -41,9 +36,7 @@
       </v-col>
 
       <v-col cols="4" class="aa">
-        <div
-          class="item  d-flex justify-center align-center text-center px-2"
-        >
+        <div class="item d-flex justify-center align-center text-center px-2">
           <span>تحویل خودرو</span>
         </div>
       </v-col>
@@ -58,15 +51,12 @@ export default {};
 <style>
 span {
   width: 100%;
-  
 
   font-family: "DanaFaNum";
   font-style: normal;
   font-weight: 500;
   font-size: 85%;
   line-height: 30px;
-
-  
 
   color: #ffffff;
 }

@@ -1,15 +1,14 @@
 <template>
   <div class="wrapper w-100 d-flex justify-center align-center">
     <div class="w-100 mx-4">
-      <div
+      <router-link
         class="libox w-100 d-flex justify-start my-3 align-center"
         v-for="item in lists"
-        :key="item.id"
+        :key="item.link"
+        :to="item.link"
       >
-        <p class="mr-2 w-100 h-100">
-          {{ item }}
-        </p>
-      </div>
+        <p class="mr-2 w-100 h-100">{{ item.text }}</p>
+      </router-link>
     </div>
   </div>
 </template>
@@ -19,19 +18,49 @@ export default {
   data() {
     return {
       lists: [
-        "داشبورد",
-        "ثبت فیش",
-        "ثبت قرارداد",
-        "تمدید قرارداد",
-        "جستجو قرارداد",
-        "تسویه قرارداد",
-        "تحویل خودرو",
-        "پروفایل",
-        "درخواست مرخصی",
-        "خروج از حساب",
-      ],
+        {
+          text: "داشبورد",
+          link: ""
+        },
+        {
+          text : "ثبت فیش",
+          link : ""
+        },
+        {
+          text: "ثبت قرارداد",
+          link: "/ContractList"
+        },
+        {
+          text : "تمدید قرارداد",
+          link : ""
+        },
+        {
+          text : "جستجو قرارداد",
+          link : ""
+        },
+        {
+          text : "تسویه قرارداد",
+          link : ""
+        },
+        {
+          text : "تحویل خودرو",
+          link : ""
+        },
+        {
+          text : "پروفایل",
+          link : ""
+        },
+        {
+          text : "درخواست مرخصی",
+          link : ""
+        },
+        {
+          text : "خروج از حساب",
+          link : ""
+        }
+      ]
     };
-  },
+  }
 };
 </script>
 
@@ -54,10 +83,10 @@ p {
   font-weight: 500;
   font-size: 16px;
   line-height: 30px;
+  color: aliceblue;
   cursor: pointer;
 }
-.libox:hover{
-    background-color: #272b33;
-    
+.libox:hover {
+  background-color: #272b33;
 }
 </style>
