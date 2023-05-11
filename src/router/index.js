@@ -4,6 +4,7 @@ import logIn from "@/pages/Login.vue"
 import DashboardLayout from "@/Layout/DashboardLayout.vue"
 import Dashboard from "@/pages/Dashboard.vue"
 import contractList from "@/pages/contractList"
+import appendContract from "@/pages/appendContract.vue"
 
 const routes = [
     {
@@ -22,6 +23,14 @@ const routes = [
         name: 'ContractList',
         path: "/ContractList",
         component: contractList,
+        meta: {
+            layout: DashboardLayout
+        }
+    },
+    {
+        name: 'appendContract',
+        path: "/appendContract",
+        component: appendContract,
         meta: {
             layout: DashboardLayout
         }
