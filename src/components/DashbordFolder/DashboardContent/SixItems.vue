@@ -24,9 +24,11 @@
 
     <v-row class>
       <v-col cols="4" class="aa">
-        <div class="item d-flex justify-center align-center text-center px-2">
-          <span>جست و جوی قرارداد</span>
-        </div>
+        <router-link to="/searchContract">
+          <div class="item d-flex justify-center align-center text-center px-2">
+            <span> جست و جوی قرارداد</span>
+          </div>
+        </router-link>
       </v-col>
 
       <v-col cols="4" class="aa">

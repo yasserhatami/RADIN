@@ -5,6 +5,9 @@ import DashboardLayout from "@/Layout/DashboardLayout.vue"
 import Dashboard from "@/pages/Dashboard.vue"
 import contractList from "@/pages/contractList"
 import appendContract from "@/pages/appendContract.vue"
+import FinalReviewcontract from "@/pages/FinalReviewcontract"
+import searchContract from "@/pages/searchContract.vue"
+
 
 const routes = [
     {
@@ -34,7 +37,24 @@ const routes = [
         meta: {
             layout: DashboardLayout
         }
+    },
+    {
+        name: 'FinalReviewcontract',
+        path: "/FinalReviewcontract",
+        component: FinalReviewcontract,
+        meta: {
+            layout: DashboardLayout
+        }
+    },
+    {
+        name: 'searchContract',
+        path: "/searchContract",
+        component: searchContract,
+        meta: {
+            layout: DashboardLayout
+        }
     }
+    
 ]
 
 const router = createRouter({
