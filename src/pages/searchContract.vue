@@ -1,8 +1,8 @@
 <template>
-  <v-container fluid dir="rtl" class="bg-green container d-flex justify-center align-center">
+  <v-container fluid dir="rtl" class=" container d-flex justify-center align-center">
     <v-row class=" h-50 flex-column justify-center align-center w-50">
-      <v-col class="rounded-lg" cols="12">
-        <div class="containerf">
+      <v-col class="rounded-lg " cols="12" md="4">
+        <div class="containerf pa-5">
           <div v-for="(input, index) in fields" :key="index">
             <div class="form-item w-100  rounded-lg py-3">
               <input
@@ -14,6 +14,8 @@
               <label for="text">{{ input }}</label>
             </div>
           </div>
+          <v-btn class="bg-secondary" block>جست و جو</v-btn>
+          <p class="text-red text-h6 mt-2">*پر کردن حداقل یکی از فیلد ها الزامیست.</p>
         </div>
       </v-col>
     </v-row>
@@ -39,6 +41,10 @@ export default {
 <style scoped>
 .container{
     height: 100vh;
+    background-image: url("@/assets/images/whitecar.png") ;
+    background-repeat: no-repeat;
+    background-position:center center;
+    background-size: cover;
 }
 .containerf {
   background: rgba(255, 255, 255, 0.9);
@@ -77,7 +83,7 @@ export default {
 .form-item input:focus + label,
 .form-item input:valid + label {
   font-size: 11px;
-  top: -5px;
+  top: 5px;
 }
 .form-item input:focus + label {
   color: #888888;
