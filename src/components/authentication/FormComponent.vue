@@ -7,12 +7,15 @@
         class="text-field mb-2"
         variant="solo"
         @blur="v$.userName.$touch"
-      >
-      </v-text-field>
+      ></v-text-field>
 
-      <p class="text-red mb-2" v-if="v$.userName.$error">
-        پر بودن این فیلد الزامیست.
-      </p>
+      <div
+        class="text-red mb-2 text-subtitle-1"
+        v-for="error of v$.userName.$errors"
+        :key="error.$id"
+      >
+        <div class="error-msg">{{ error.$message }}</div>
+      </div>
 
       <v-text-field
         @blur="v$.password.$touch"
@@ -20,16 +23,18 @@
         class="mb-0 pb-0 text-field"
         v-model="state.password"
         variant="solo"
+        
+      ></v-text-field>
+      <div
+        class="text-red mb-2 text-subtitle-1"
+        v-for="error of v$.password.$errors"
+        :key="error.$id"
       >
-      </v-text-field>
-      <p class="text-red mb-2" v-if="v$.password.$error">
-        پر بودن این فیلد الزامیست.
-      </p>
+        <div class="error-msg">{{ error.$message }}</div>
+      </div>
 
-      <v-btn @click="login()"  block variant="elevated" class="btn mt-5"> ورود </v-btn>
-      <p class="text-red mb-2 mt-2" v-if="correct">
-        اول فیلدهای بالا را پر کنید.
-      </p>
+      <v-btn @click="login()" block variant="elevated" class="btn mt-5">ورود</v-btn>
+      <p class="text-red mb-2 mt-2 text-subtitle-2" v-if="correct">اول فیلدهای بالا را پر کنید.</p>
 
       <div class="d-flex justify-center align-center mt-7 mb-5">
         <v-img class="img" :src="require('@/assets/images/image1.png')"></v-img>
@@ -39,38 +44,62 @@
 </template>
 <script>
 import useVuelidate from "@vuelidate/core";
-import { required, minLength } from "@vuelidate/validators";
-import { reactive,ref } from "vue";
-import { useRouter } from 'vue-router'
+import { required, minLength, alpha, helpers } from "@vuelidate/validators";
+import { reactive, ref } from "vue";
+import { useRouter } from "vue-router";
+import auth from "@/services/auth.js";
 export default {
   setup() {
-    const router = useRouter()
+    const router = useRouter();
     
     const state = reactive({
       userName: "",
-      password: "",
+      password: ""
     });
-    let correct = ref(false)
+    let correct = ref(false);
 
     const rules = {
-      userName: { required, minLength },
-      password: { required, minLength },
+      userName: {
+        required: helpers.withMessage("پر بودن این فیلد الزامیست.", required),
+        minLength,
+        alpha: helpers.withMessage(
+          "لطفا فقط از حروف انگلیسی استفاده کنید.",
+          alpha
+        )
+      },
+
+      password: {
+        required: helpers.withMessage("پر بودن این فیلد الزامیست.", required),
+        minLength
+      }
     };
-    function login(){
-      if(state.userName === '' || state.password == ''){
-        correct.value = true
-        setTimeout(()=>{
-          correct.value = false
-        },5000)
-      }else{
+    function login() {
+      if (state.userName === "" || state.password === "") {
+        correct.value = true;
+        setTimeout(() => {
+          correct.value = false;
+        }, 5000);
+      } else {
+        
+        const payload = {
+          username: state.userName,
+          password: state.password
+        };
+       
+        console.log(state);
+        const res = auth.login(payload
+        );
+        res.then(() => {
+          console.log(res);
+        });
         router.push("/Dashboard");
       }
     }
 
     const v$ = useVuelidate(rules, state);
 
-    return { v$, state ,login,correct };
-  },
+    return { v$, state, login, correct,auth};
+  }
 };
 </script>
 <style scoped>
@@ -80,7 +109,7 @@ export default {
 }
 
 .btn {
-  height: 70px !important;
+  height: 56px !important;
   color: #ffffff;
   background: linear-gradient(93.79deg, #ff614c 2.81%, #ff4b33 97.42%);
   box-shadow: -2px -2px 6px rgba(0, 0, 0, 0.1), 2px 2px 6px rgba(0, 0, 0, 0.1);
@@ -101,5 +130,4 @@ export default {
   font-family: "DanaFaNum" !important;
   height: 56px !important;
 }
-
 </style>

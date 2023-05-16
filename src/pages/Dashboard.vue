@@ -1,17 +1,17 @@
 <template>
-  <v-container dir="" class="mt-6" fluid>
-    <v-row class="mx-1">
+  <v-container dir="" class="mt-2" fluid>
+    <v-row class="mx-1 bg-red">
       <v-col
-        class="flex-column justify-center align-center"
+        class="flex-column justify-center align-center pa-0 ma-0"
         cols="12"
         sm="7"
         order="2"
       >
-        <div class="w-100 h-50 mb-5">
+        <div class="h-50 bg-green">
           <chartcomponent />
         </div>
 
-        <div dir="rtl" class="mt-6">
+        <div dir="rtl" class="">
           <v-row>
             <v-col cols="12" sm="7">
               
@@ -33,7 +33,7 @@
         sm="5"
         order="1"
       >
-        <div class="d-flex justify-center align-center">
+        <div class="h-50 bg-green">
           <managermessage />
         </div>
         <div class="d-flex justify-center align-center ma-0 pa-0">

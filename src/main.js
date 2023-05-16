@@ -13,14 +13,11 @@ loadFonts()
 //import sass
 import '@/assets/sass/main.scss'
 
-
-
-
-
-
-
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 const app = createApp(App);
 app.use(router)
+  .use(VueAxios, axios)
   .use(vuetify)
   .mount('#app')

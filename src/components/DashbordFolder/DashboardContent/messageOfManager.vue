@@ -1,11 +1,11 @@
 <template>
-  <div  dir="rtl" class="w-100 h-100">
+  <div  dir="rtl" class="">
     <v-img
       :src="require('@/assets/images/managerpm.png')"
-      class="align-start"
+      class="align-start  img"
       cover
     >
-      <v-card-title class="title mt-2 mt-sm-4"
+      <v-card-title class="title mt-1"
         >پیام مدیر عامل</v-card-title
       >
       <div class="d-flex align-center justify-center">
@@ -24,11 +24,13 @@ export default {};
 </script>
 
 <style scoped>
+.img{
+  border-radius: 30px !important;
+}
 .title {
   font-family: "DanaFaNum";
   font-style: normal;
   font-weight: 500;
-  font-size: 25px;
   line-height: 30px;
   /* identical to box height, or 120% */
 
@@ -52,4 +54,5 @@ export default {};
 
   color: #ffffff;
 }
+
 </style>

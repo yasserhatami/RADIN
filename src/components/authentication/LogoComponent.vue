@@ -1,6 +1,6 @@
 <template>
-  <v-card class="card d-flex justify-center align-center w-100">
-    <v-img class="img" :src="require('@/assets/images/logo.png')"></v-img>
+  <v-card class="card d-flex justify-center align-center w-100 h-100">
+    <v-img class="img w-100 h-100" :src="require('@/assets/images/logo.png')"></v-img>
   </v-card>
 </template>
 <script>
