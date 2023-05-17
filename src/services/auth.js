@@ -8,7 +8,7 @@ const auth = {
             data,
             headers
         }).then(res => {
-                return res.data
+                return res
             })
     }}
     

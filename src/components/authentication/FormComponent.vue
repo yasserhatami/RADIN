@@ -1,7 +1,13 @@
 <template>
   <div dir="rtl" class="w-100 h-100 d-flex justify-center align-center">
     <v-sheet class="px-8 pt-8 sheet w-100" rounded>
+      <div class="text-center">
+        <p class="text-red text-h5" v-if="notMatchWarn">
+          The username or password is incorrect,try again
+        </p>
+      </div>
       <v-text-field
+        autocomplete="true"
         v-model="state.userName"
         placeholder="نام کاربری(انگلیسی)"
         class="text-field mb-2"
@@ -18,12 +24,12 @@
       </div>
 
       <v-text-field
+        autocomplete="true"
         @blur="v$.password.$touch"
         placeholder="رمز عبور"
         class="mb-0 pb-0 text-field"
         v-model="state.password"
         variant="solo"
-        
       ></v-text-field>
       <div
         class="text-red mb-2 text-subtitle-1"
@@ -33,8 +39,19 @@
         <div class="error-msg">{{ error.$message }}</div>
       </div>
 
-      <v-btn @click="login()" block variant="elevated" class="btn mt-5">ورود</v-btn>
-      <p class="text-red mb-2 mt-2 text-subtitle-2" v-if="correct">اول فیلدهای بالا را پر کنید.</p>
+      <div>
+        <v-btn @click="login()" block variant="elevated" class="btn mt-5">
+          <!-- <span> ورود </span> -->
+          <v-progress-circular
+      indeterminate
+      color="primary"
+    ></v-progress-circular>
+        </v-btn>
+      </div>
+
+      <p class="text-red mb-2 mt-2 text-subtitle-2" v-if="correct">
+        اول فیلدهای بالا را پر کنید.
+      </p>
 
       <div class="d-flex justify-center align-center mt-7 mb-5">
         <v-img class="img" :src="require('@/assets/images/image1.png')"></v-img>
@@ -49,12 +66,17 @@ import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import auth from "@/services/auth.js";
 export default {
+  data() {
+    return {
+      notMatchWarn: false,
+    };
+  },
   setup() {
     const router = useRouter();
-    
+
     const state = reactive({
       userName: "",
-      password: ""
+      password: "",
     });
     let correct = ref(false);
 
@@ -65,13 +87,13 @@ export default {
         alpha: helpers.withMessage(
           "لطفا فقط از حروف انگلیسی استفاده کنید.",
           alpha
-        )
+        ),
       },
 
       password: {
         required: helpers.withMessage("پر بودن این فیلد الزامیست.", required),
-        minLength
-      }
+        minLength,
+      },
     };
     function login() {
       if (state.userName === "" || state.password === "") {
@@ -80,26 +102,40 @@ export default {
           correct.value = false;
         }, 5000);
       } else {
-        
         const payload = {
           username: state.userName,
-          password: state.password
+          password: state.password,
         };
-       
-        console.log(state);
-        const res = auth.login(payload
-        );
-        res.then(() => {
-          console.log(res);
-        });
-        router.push("/Dashboard");
+
+        auth
+          .login(payload)
+
+          .then((response) => {
+            if (response.status === 200) {
+              console.log(response);
+              if (response.statusText === "OK") {
+                router.push("/Dashboard");
+              }
+            }
+            // else {
+            //   this.notMatchWarn = true;
+            //   setTimeout(() => {
+            //     this.notMatchWarn = false;
+            //   }, 4000);
+            //   let username = document.getElementById("username");
+            //   username.focus();
+            // }
+          })
+          .catch((res) => {
+            alert(res.name);
+          });
       }
     }
 
     const v$ = useVuelidate(rules, state);
 
-    return { v$, state, login, correct,auth};
-  }
+    return { v$, state, login, correct, auth };
+  },
 };
 </script>
 <style scoped>
@@ -111,7 +147,8 @@ export default {
 .btn {
   height: 56px !important;
   color: #ffffff;
-  background: linear-gradient(93.79deg, #ff614c 2.81%, #ff4b33 97.42%);
+  /* background: linear-gradient(93.79deg, #ff614c 2.81%, #ff4b33 97.42%); */
+  background-color: white;
   box-shadow: -2px -2px 6px rgba(0, 0, 0, 0.1), 2px 2px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   font-family: "DanaFaNum";
