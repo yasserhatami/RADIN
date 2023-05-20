@@ -79,6 +79,7 @@ export default {
 .vpd-month-label {
   color: black;
   font-size: 30px;
+  height: 36px !important;
 }
 .vpd-month-label {
   width: 200px;

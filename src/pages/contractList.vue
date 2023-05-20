@@ -16,7 +16,7 @@
           <div class="bb">
             <select
               aria-placeholder="hh"
-              class="pr-3"
+              class="pr-3 w-100 py-3"
               name="select"
               id="select"
               v-model="select"
@@ -27,20 +27,22 @@
               <option value="">در حال انجام</option>
             </select>
           </div>
-          <div class="">
+          
             <v-img
-              class="aa"
+              class="aa ml-1"
               cover
               :src="require('@/assets/images/arrow.svg')"
             ></v-img>
-          </div>
+          
         </div>
       </v-col>
 
       <v-col class="pa-0 pa-md-3" cols="12" md="3">
+        <router-link to="/appendContract" class=" text-decoration-none text-white ">
         <div class="box btn w-100 pa-2 d-flex justify-center align-center">
-          <router-link to="/appendContract" class=" text-decoration-none text-white ">افزودن قرارداد</router-link>
+          افزودن قرارداد
         </div>
+      </router-link>
       </v-col>
     </v-row>
     <v-row>
@@ -67,7 +69,7 @@ export default {
   font-weight: 500 !important;
   font-size: 24px !important;
   line-height: 30px !important;
-
+  
   color: #ffffff !important;
   background: #bfdc36 !important;
 }
@@ -99,8 +101,9 @@ input {
 .aa {
   width: 10px;
   height: 10px;
+  padding: 0;
 }
 .bb {
-  width: 90%;
+  width: 100%;
 }
 </style>

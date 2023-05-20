@@ -33,14 +33,14 @@
             </div>
             <v-img
               style="width: 60px"
-              class="img sss mr-6 pr-3"
+              class="img sss mr-0 mr-lg-2 pr-3"
               :src="require('@/assets/images/Ellipse 1.png')"
             ></v-img>
           </div>
         </div>
       </v-app-bar>
 
-      <v-main style="min-height: 300px">
+      <v-main style="">
         <slot> </slot>
       </v-main>
     </v-layout>

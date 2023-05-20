@@ -1,10 +1,11 @@
 <template>
   <div dir="rtl" class="w-100 h-100 d-flex justify-center align-center">
     <v-sheet class="px-8 pt-8 sheet w-100" rounded>
-      <div class="text-center">
-        <p class="text-red text-h5" v-if="notMatchWarn">
-          The username or password is incorrect,try again
-        </p>
+      <div class="text-center mb-4">
+        <p
+          class="text-red text-h5"
+          v-if="notMatchWarn"
+        >نام کاربری یا رمز عبور اشتباه است،لطفا دوباره تلاش کنید</p>
       </div>
       <v-text-field
         autocomplete="true"
@@ -41,17 +42,12 @@
 
       <div>
         <v-btn @click="login()" block variant="elevated" class="btn mt-5">
-          <!-- <span> ورود </span> -->
-          <v-progress-circular
-      indeterminate
-      color="primary"
-    ></v-progress-circular>
+          <span v-if="activeLoading">ورود</span>
+          <v-progress-circular v-else indeterminate></v-progress-circular>
         </v-btn>
       </div>
 
-      <p class="text-red mb-2 mt-2 text-subtitle-2" v-if="correct">
-        اول فیلدهای بالا را پر کنید.
-      </p>
+      <p class="text-red mb-2 mt-2 text-subtitle-2" v-if="correct">اول فیلدهای بالا را پر کنید.</p>
 
       <div class="d-flex justify-center align-center mt-7 mb-5">
         <v-img class="img" :src="require('@/assets/images/image1.png')"></v-img>
@@ -67,16 +63,16 @@ import { useRouter } from "vue-router";
 import auth from "@/services/auth.js";
 export default {
   data() {
-    return {
-      notMatchWarn: false,
-    };
+    return {};
   },
   setup() {
+    let notMatchWarn = ref(false);
+    let activeLoading = ref(true);
     const router = useRouter();
 
     const state = reactive({
       userName: "",
-      password: "",
+      password: ""
     });
     let correct = ref(false);
 
@@ -87,15 +83,17 @@ export default {
         alpha: helpers.withMessage(
           "لطفا فقط از حروف انگلیسی استفاده کنید.",
           alpha
-        ),
+        )
       },
 
       password: {
         required: helpers.withMessage("پر بودن این فیلد الزامیست.", required),
-        minLength,
-      },
+        minLength
+      }
     };
     function login() {
+      activeLoading.value = false;
+      console.log(activeLoading);
       if (state.userName === "" || state.password === "") {
         correct.value = true;
         setTimeout(() => {
@@ -104,38 +102,36 @@ export default {
       } else {
         const payload = {
           username: state.userName,
-          password: state.password,
+          password: state.password
         };
 
         auth
           .login(payload)
 
-          .then((response) => {
+          .then(response => {
             if (response.status === 200) {
               console.log(response);
               if (response.statusText === "OK") {
                 router.push("/Dashboard");
+              } else {
+                alert(activeLoading.value);
               }
             }
-            // else {
-            //   this.notMatchWarn = true;
-            //   setTimeout(() => {
-            //     this.notMatchWarn = false;
-            //   }, 4000);
-            //   let username = document.getElementById("username");
-            //   username.focus();
-            // }
           })
-          .catch((res) => {
-            alert(res.name);
+          .catch(() => {
+            activeLoading.value = true;
+            notMatchWarn.value = true;
+            setTimeout(() => {
+              notMatchWarn.value = false;
+            }, 5000);
           });
       }
     }
 
     const v$ = useVuelidate(rules, state);
 
-    return { v$, state, login, correct, auth };
-  },
+    return { v$, state, login, correct, auth, activeLoading, notMatchWarn };
+  }
 };
 </script>
 <style scoped>
@@ -148,7 +144,7 @@ export default {
   height: 56px !important;
   color: #ffffff;
   /* background: linear-gradient(93.79deg, #ff614c 2.81%, #ff4b33 97.42%); */
-  background-color: white;
+  background-color: rgb(235, 33, 33);
   box-shadow: -2px -2px 6px rgba(0, 0, 0, 0.1), 2px 2px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   font-family: "DanaFaNum";

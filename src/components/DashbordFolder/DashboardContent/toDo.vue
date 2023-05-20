@@ -1,5 +1,5 @@
 <template>
-  <div dir="rtl" class="aa pa-3">
+  <div dir="rtl" class="aa pa-3 h-100">
     <div class="h-100">
       <v-row
         class="w-100 h-25 ma-0 pa-0 d-flex justify-space-between align-center"
