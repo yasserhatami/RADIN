@@ -71,6 +71,7 @@ export default {
   name: "UseDropzoneDemo",
   methods:{
     GoToFinalReviewOfTheContract(){
+      localStorage.setItem('uploadedImages', JSON.stringify(this.uploadedImages))
       this.$router.push('/FinalReviewcontract')
     }
   },

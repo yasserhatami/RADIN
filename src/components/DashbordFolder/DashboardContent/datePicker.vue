@@ -1,6 +1,6 @@
 <template>
   <date-picker
-    class="main-datepicker  w-100 h-100"
+    class="main-datepicker w-100 h-100"
     v-model="date"
     :inline="true"
   />
@@ -16,42 +16,47 @@ export default {
 </script>
 
 <style lang="scss">
+.main-datepicker {
+  font-family: "DanaFaNum";
+}
 .vpd-content {
   width: 100%;
 }
 .vpd-day {
   background-color: white;
   border-radius: 50%;
-  /* margin: 5px; */
-  width: 40px;
-  height: 40px;
-
-  border: 1px solid #D9D9D9;
-  display: flex; 
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-left: 0.5rem;
+  border: 1px solid #d9d9d9;
+  display: flex;
   justify-content: center;
   align-content: center;
   text-align: center;
   margin-bottom: 0.5rem;
-  margin-left: 0.5rem;
-//   &:nth-child(odd) {
-    
-//   }
-//   &:nth-child(even) {
-//     margin-right: 0rem;
-//   }
 }
-.vpd-day-effect{
-    
+.vpd-day-effect {
+  top: 0 !important;
+  left: 0 !important;
+}
+.direction-prev {
+  width: 100% !important;
+}
+.vpd-clearfix {
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 .vpd-days {
-    display: flex;
-    justify-content: center;
-    height: 288px !important;
+  display: flex;
+  justify-content: center;
+  padding: 0 !important;
+  height: 100% !important;
 }
 .vpd-day-text {
   color: #485162;
   font-size: 20px;
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -84,5 +89,12 @@ export default {
 .vpd-month-label {
   width: 200px;
   height: 150px;
+}
+@media only screen and (min-width: 1400px) {
+  .vpd-day {
+    width: 4rem;
+    height: 4rem;
+    margin-left: 0.5rem;
+  }
 }
 </style>

@@ -11,7 +11,7 @@
               <input
                 class="w-100 h-100 rounded-lg"
                 type="text"
-                v-model="form.name"
+                v-model="form.first_name"
                 autocomplete="off"
                 required
               />
@@ -24,7 +24,7 @@
               <input
                 class="w-100 h-100 rounded-lg"
                 type="text"
-                v-model="form.family"
+                v-model="form.last_name"
                 autocomplete="off"
                 required
               />
@@ -37,7 +37,7 @@
               <input
                 class="w-100 h-100 rounded-lg"
                 type="text"
-                v-model="form.nationcode"
+                v-model="form.national_code"
                 autocomplete="off"
                 required
               />
@@ -55,7 +55,7 @@
               <input
                 class="w-100 h-100 rounded-lg"
                 type="text"
-                v-model="form.contracttype"
+                v-model="form.contract_type"
                 autocomplete="off"
                 required
               />
@@ -68,7 +68,7 @@
               <input
                 class="w-100 h-100 rounded-lg"
                 type="text"
-                v-model="form.contractnumber"
+                v-model="form.contract_number"
                 autocomplete="off"
                 required
               />
@@ -81,7 +81,7 @@
               <input
                 class="w-100 h-100 rounded-lg"
                 type="text"
-                v-model="form.cartype"
+                v-model="form.car_type"
                 autocomplete="off"
                 required
               />
@@ -101,7 +101,7 @@
                   class="pr-4 w-100"
                   name="select"
                   id="select"
-                  v-model="form.contractstatus"
+                  v-model="form.status"
                 >
                   <option style="color : blue !important" value="" disabled >وضعیت قرارداد</option>
                   <option value="تمام شده" selected>تمام شده</option>
@@ -146,13 +146,13 @@ export default {
   data(){
     return{
       form : {
-        name : '',
-        family : '',
-        nationcode : '',
-        contracttype : '',
-        contractnumber : '',
-        cartype : '',
-        contractstatus : ''
+        first_name : '',
+        last_name : '',
+        national_code : '',
+        contract_type : '',
+        contract_number : '',
+        car_type : '',
+        status : ''
       }
     }
   },

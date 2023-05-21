@@ -11,12 +11,12 @@
           </div>
           <div
             class="component py-3 mt-3 w-100 d-flex justify-space-between"
-            v-for="(input, index) in Object.keys(form)"
+            v-for="(input, index) in form"
             :key="index"
           >
             <div class="w-50 d-flex justify-space-between mr-5">
-              <span class="key">{{ arr[index]}}</span>
-              <span class="value mr-7">{{ form[input] }}</span>
+              <span class="key">{{ input.label }}</span>
+              <input type="text" v-model="filledValues[input.name]" >
             </div>
             <div class="d-flex justify-end">
               <v-img
@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="mt-3 mb-5">
-          <v-btn @click="GoToFinalReviewOfTheContract" class="btn" block
+          <v-btn @click="submitContract" class="btn" block
             >ثبت نهایی</v-btn
           >
         </div>
@@ -38,30 +38,88 @@
 </template>
 
 <script>
+import createFile from '@/utils/urlToFile'
+import contract from '@/services/contract';
 export default {
   data() {
     return {
-      form: {
-        "نام": "",
-        "نام خانوادگی": "",
-        "کد ملی": "",
-        "نوع قرارداد": "",
-        "شماره قرارداد": "",
-        "نوع خودرو": "",
-        "وضعیت قرارداد": "",
-      },
-      arr: ["نام", "نام خانوادگی", "کد ملی","نوع قرارداد","شماره قرارداد","نوع خودرو","وضعیت قرارداد"]
+      form: [
+        {
+          label: 'نام',
+          name: 'first_name'
+        },
+        {
+          label: "نام خانوادگی",
+          name: 'last_name'
+        },
+        {
+          label: "کد ملی",
+          name: 'national_code'
+        },
+        {
+          label: "نوع قرارداد",
+          name: 'contract_type'
+        },
+        {
+          label: "شماره قرارداد",
+          name: 'contract_number'
+        },
+        {
+          label: "نوع خودرو",
+          name: 'car_type'
+        },
+        {
+          label: "وضعیت قرارداد",
+          name: 'status'
+        } 
+      ],
+      filledValues: {
+        first_name : '',
+        last_name : '',
+        national_code : '',
+        contract_type : '',
+        contract_number : '',
+        car_type : '',
+        status : '',
+        uploaded_images: []
+      }
     };
   },
 
   mounted() {
     // let form = Object.values(localStorage.getItem("form"));
-    let x = localStorage.getItem("form");
-    this.form = JSON.parse(x);
+    let contractFilledData = localStorage.getItem("form");
+    this.filledValues = JSON.parse(contractFilledData);
 
-    console.log(x);
-    console.log();
+    let contractImages = localStorage.getItem("uploadedImages");
+    const arrayOfContractImages = JSON.parse(contractImages)
+    for (const img of arrayOfContractImages) {
+      console.log('xxxxxxx', createFile(img.preview));
+      this.filledValues.uploaded_images.push(createFile(img.preview)) 
+    }
   },
+  methods: {
+    submitContract() {
+      const tempFormData = new FormData()
+      
+      for (const field in this.filledValues) {
+        if(field === 'uploaded_images' &&  this.filledValues.uploaded_images &&  this.filledValues.uploaded_images.length) {
+          for (const item of this.filledValues.uploaded_images) {
+            tempFormData.append('uploaded_images', item)
+          }
+        } else {
+          tempFormData.append(field, this.filledValues[field])
+        }
+      }
+
+      contract.createContract(tempFormData)
+      .then(res => {
+        console.log('res', res);
+      }).catch(err => {
+        console.log('caaaa', err);
+      })
+    },
+  }
 };
 </script>
 

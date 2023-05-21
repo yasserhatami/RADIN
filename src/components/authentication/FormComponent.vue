@@ -2,10 +2,9 @@
   <div dir="rtl" class="w-100 h-100 d-flex justify-center align-center">
     <v-sheet class="px-8 pt-8 sheet w-100" rounded>
       <div class="text-center mb-4">
-        <p
-          class="text-red text-h5"
-          v-if="notMatchWarn"
-        >نام کاربری یا رمز عبور اشتباه است،لطفا دوباره تلاش کنید</p>
+        <p class="text-red text-h5" v-if="notMatchWarn">
+          نام کاربری یا رمز عبور اشتباه است،لطفا دوباره تلاش کنید
+        </p>
       </div>
       <v-text-field
         autocomplete="true"
@@ -47,7 +46,9 @@
         </v-btn>
       </div>
 
-      <p class="text-red mb-2 mt-2 text-subtitle-2" v-if="correct">اول فیلدهای بالا را پر کنید.</p>
+      <p class="text-red mb-2 mt-2 text-subtitle-2" v-if="correct">
+        اول فیلدهای بالا را پر کنید.
+      </p>
 
       <div class="d-flex justify-center align-center mt-7 mb-5">
         <v-img class="img" :src="require('@/assets/images/image1.png')"></v-img>
@@ -72,7 +73,7 @@ export default {
 
     const state = reactive({
       userName: "",
-      password: ""
+      password: "",
     });
     let correct = ref(false);
 
@@ -83,17 +84,16 @@ export default {
         alpha: helpers.withMessage(
           "لطفا فقط از حروف انگلیسی استفاده کنید.",
           alpha
-        )
+        ),
       },
 
       password: {
         required: helpers.withMessage("پر بودن این فیلد الزامیست.", required),
-        minLength
-      }
+        minLength,
+      },
     };
     function login() {
       activeLoading.value = false;
-      console.log(activeLoading);
       if (state.userName === "" || state.password === "") {
         correct.value = true;
         setTimeout(() => {
@@ -102,16 +102,21 @@ export default {
       } else {
         const payload = {
           username: state.userName,
-          password: state.password
+          password: state.password,
         };
 
         auth
           .login(payload)
 
-          .then(response => {
+          .then((response) => {
             if (response.status === 200) {
-              console.log(response);
+              console.log();
+
               if (response.statusText === "OK") {
+                localStorage.setItem(
+                  "token",
+                  `Bearer ${response.data.access_token}`
+                );
                 router.push("/Dashboard");
               } else {
                 alert(activeLoading.value);
@@ -131,7 +136,7 @@ export default {
     const v$ = useVuelidate(rules, state);
 
     return { v$, state, login, correct, auth, activeLoading, notMatchWarn };
-  }
+  },
 };
 </script>
 <style scoped>
@@ -139,7 +144,9 @@ export default {
   width: 174px;
   height: 39px;
 }
-
+* {
+  font-family: "DanaFaNum";
+}
 .btn {
   height: 56px !important;
   color: #ffffff;

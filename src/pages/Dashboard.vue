@@ -2,23 +2,23 @@
   <v-container dir="" class="" fluid>
     <v-row class="mx-1 ">
       <v-col
-        class="flex-column justify-center align-center pa-0 ma-0"
+        class="flex-column justify-center align-center pa-0 ma-0 "
         cols="12"
-        sm="7"
+        md="7"
         order="2"
       >
-        <div class="h-50 ">
+        <div class="mb-4">
           <chartcomponent />
         </div>
 
         <div dir="rtl" class="">
           <v-row>
-            <v-col cols="12" sm="7">
+            <v-col cols="12" md="7">
               
               <datePicker></datePicker>
             </v-col>
 
-            <v-col cols="12" sm="5">
+            <v-col cols="12" md="5">
               <div class="w-100 h-100 ">
                 <todo></todo>
               </div>
@@ -28,15 +28,15 @@
       </v-col>
 
       <v-col
-        class="order-sm-last flex-column justify-center align-center ma-0 pa-0"
+        class="order-sm-last flex-column justify-center align-center mb-4 pa-0"
         cols="12"
-        sm="5"
+        md="5"
         order="1"
       >
         <div class="h-50 ">
           <managermessage />
         </div>
-        <div class="d-flex justify-center align-center ma-0 pa-0">
+        <div class="h-50 d-flex justify-center align-center ma-0 pa-0">
           <sixitems />
         </div>
       </v-col>
@@ -61,7 +61,7 @@ export default {
   },
   data(){
     return{
-      date : ''
+      // date : ''
     }
   }
 };

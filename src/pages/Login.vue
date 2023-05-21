@@ -5,7 +5,7 @@
         <v-card  class="card-image h-screen w-100 border-none" >
           <v-img class="" cover :src="require('@/assets/loginbg.png')" >
             <v-row  class=" h-100 pa-0 ma-0">
-              <v-col cols="12" md="6" class="h-100 pa-0 ma-0">
+              <v-col cols="12" md="6" class="h-100 mb-10 pa-0 ma-0">
                 <div class="w-100 h-100 d-flex justify-center align-center ">
                   <div class="formraper">
                     <formcomponent/>
