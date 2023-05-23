@@ -6,29 +6,18 @@
           <p class="text-h6 text-lg-h5">یادداشت های امروز</p>
         </v-col>
         <v-col cols="2">
-          <v-icon
-            @click="add"
-            class="bg-red rounded-lg pa-0 ml-2"
-            icon="mdi-plus"
-          ></v-icon>
+          <v-icon @click="add" class="bg-red rounded-lg pa-0 ml-2" icon="mdi-plus"></v-icon>
         </v-col>
       </v-row>
       <v-row class="d-flex justify-space-between align-center mt-0">
         <v-col class="mt-0 px-2" cols="12">
-          <v-text-field
-            class="pa-0"
-            v-model="addedTask"
-            label="یادداشت جدید"
-          ></v-text-field>
+          <v-text-field class="pa-0" v-model="addedTask" label="یادداشت جدید"></v-text-field>
         </v-col>
       </v-row>
       <v-row class="d-flex justify-center align-center">
-        <div
-          v-if="flag"
-          class="w-100 px-2 d-flex justify-space-between align-center"
-        >
-          <label for="vehicle1">{{ task }}</label
-          ><br />
+        <div v-if="flag" class="w-100 px-2 d-flex justify-space-between align-center">
+          <label for="vehicle1">{{ task }}</label>
+          <br />
           <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
         </div>
       </v-row>
@@ -38,43 +27,31 @@
 
 
 <script>
-// import toDo from "@/services/toDo";
-import axios from "axios";
+import toDo from "@/services/toDo";
+// import axios from "axios";
 import { ref } from "vue";
 export default {
   setup() {
-    const count = ref(1);
     const addedTask = ref("");
     function add() {
-      axios
-        .post("/login", {
-          firstName: "Finn",
-          lastName: "Williams",
+      let title = JSON.stringify({
+        addedTask
+      });
+
+      toDo
+        .createTask({
+          title
         })
-        .then(
-          (response) => {
-            console.log(response);
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-      console.log("ssssss", addedTask);
-      // toDo
-      //   .rigester({
-      //     title: addedTask.value,
-      //   })
-      //   .then((res) => {
-      //     console.log(res);
-      //   });
+        .then(res => {
+          console.log(res);
+        });
     }
 
     return {
-      count,
       addedTask,
-      add,
+      add
     };
-  },
+  }
 
   // beforeMount() {},
 };

@@ -40,6 +40,7 @@
 <script>
 import createFile from '@/utils/urlToFile'
 import contract from '@/services/contract';
+
 export default {
   data() {
     return {
@@ -82,26 +83,41 @@ export default {
         car_type : '',
         status : '',
         uploaded_images: []
-      }
+      },
+      arrayOfContractImages :[]
     };
   },
-
-  mounted() {
-    // let form = Object.values(localStorage.getItem("form"));
+  async beforeMount(){
     let contractFilledData = localStorage.getItem("form");
-    this.filledValues = JSON.parse(contractFilledData);
+    this.filledValues = {...this.filledValues, ...JSON.parse(contractFilledData)};
 
     let contractImages = localStorage.getItem("uploadedImages");
-    const arrayOfContractImages = JSON.parse(contractImages)
-    for (const img of arrayOfContractImages) {
-      console.log('xxxxxxx', createFile(img.preview));
-      this.filledValues.uploaded_images.push(createFile(img.preview)) 
+     this.arrayOfContractImages = JSON.parse(contractImages)
+     for (const img of this.arrayOfContractImages) {
+      console.log('aaaaaaaaaaaaa', img.preview)
+      const tempImage = await createFile(img.preview)
+      this.filledValues.uploaded_images.push(tempImage) 
+      // this.arrayOfContractImages.push(createFile(img.preview)) 
     }
+  }
+ ,
+   mounted() {
+   
+  //   // let form = Object.values(localStorage.getItem("form"));
+  //   let contractFilledData = localStorage.getItem("form");
+  //   this.filledValues = JSON.parse(contractFilledData);
+
+  //   let contractImages = localStorage.getItem("uploadedImages");
+  //   const arrayOfContractImages = JSON.parse(contractImages)
+  //   for (const img of arrayOfContractImages) {
+  //     console.log('xxxxxxx', createFile(img.preview));
+  //     this.filledValues.uploaded_images.push(createFile(img.preview)) 
+  //   }
   },
   methods: {
     submitContract() {
-      const tempFormData = new FormData()
-      
+       const tempFormData = new FormData()
+
       for (const field in this.filledValues) {
         if(field === 'uploaded_images' &&  this.filledValues.uploaded_images &&  this.filledValues.uploaded_images.length) {
           for (const item of this.filledValues.uploaded_images) {

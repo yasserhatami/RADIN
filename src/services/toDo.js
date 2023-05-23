@@ -1,12 +1,11 @@
 import Api from "@/utils/axios.js";
-
+// let token = localStorage.getItem('token')
 const toDo = {
-    rigester: async (data, headers) => {
+    createTask: async (data) => {
         return await Api({
             url: "dashboard/to-do/",
-            method: 'post',
-            data,
-            headers
+            method: 'POST',
+            data
         }).then(res => {
                 return res
             })
