@@ -66,18 +66,23 @@
   <script >
 import { useDropzone } from "vue3-dropzone";
 import { reactive } from "vue";
+import { mapActions } from 'vuex';
+// import { useStore } from 'vuex'
 
 export default {
   name: "UseDropzoneDemo",
   methods:{
+    ...mapActions('contractModules',['fillUplodeImages']),
     GoToFinalReviewOfTheContract(){
-      localStorage.setItem('uploadedImages', JSON.stringify(this.uploadedImages))
+      // localStorage.setItem('uploadedImages', JSON.stringify(this.uploadedImages))
+      this.fillUplodeImages(this.uploadedImages)
+      // this.$store.commit('fillUplodedImages',this.uploadedImages);
       this.$router.push('/FinalReviewcontract')
     }
   },
   setup() {
     let uploadedImages = reactive([]);
-
+    
     const saveFiles = (files) => {
       const formData = new FormData(); // pass data as a form
       for (var x = 0; x < files.length; x++) {
@@ -99,7 +104,6 @@ export default {
       console.log(acceptFiles);
       console.log(rejectReasons);
     }
-
     const deleteImage = (file) => {
       const fileIndex = uploadedImages.findIndex((item) => {
         item.name === file.name;

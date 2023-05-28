@@ -1,11 +1,13 @@
 import axios from "axios"
 const baseUrl = 'http://37.32.8.176:8000/api/';
 const Api = (_config, body = null, headers) => {
+    
     const token = localStorage.getItem('token');
     let config = {
         baseURL: baseUrl,
         method: 'GET',
         headers: {
+        
             'content-Type': 'application/json; ',
             "Authorization": `${token}`,
             ...headers

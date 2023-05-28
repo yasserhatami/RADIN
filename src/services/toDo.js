@@ -7,8 +7,18 @@ const toDo = {
             method: 'POST',
             data
         }).then(res => {
-                return res
-            })
-    }}
-    
+            return res
+        })
+    },
+    getAllTasks: async () => {
+        return await Api({
+            url: "dashboard/to-do/",
+        }).then(res => {
+            console.log(res);
+            return res
+           
+        })
+    }
+}
+
 export default toDo

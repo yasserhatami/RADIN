@@ -70,11 +70,12 @@ span {
   border-radius: 1.2rem;
   background-color: #485162;
   background-size: auto;
+  background-repeat: repeat-x;
   background-position: center center;
 }
 @media only screen and (min-width: 1000px) {
   .item {
-    height: 120px;
+    height: 104px;
     background-repeat: repeat-x;
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="formcontainer w-75 d-flex justify-center align-center px-5">
     <v-row class="my-8 d-flex justify-center align-center w-100">
-      <v-col cols="11" class="">
+      <v-col cols="11" class>
         <v-row class="row mx-5">
           <p>اطلاعات شخصی</p>
         </v-row>
@@ -41,7 +41,7 @@
                 autocomplete="off"
                 required
               />
-              <label for="text"> کد ملی</label>
+              <label for="text">کد ملی</label>
             </div>
           </v-col>
         </v-row>
@@ -51,15 +51,24 @@
         </v-row>
         <v-row class="mx-2 row">
           <v-col class="rounded-lg" cols="12" md="4">
-            <div class="form-item w-100 h-100 rounded-lg">
-              <input
-                class="w-100 h-100 rounded-lg"
-                type="text"
-                v-model="form.contract_type"
-                autocomplete="off"
-                required
-              />
-              <label for="text">نوع قرارداد</label>
+            <div class="box w-100 d-flex justify-space-between align-center">
+              <div class="w-100">
+                <select
+                  style="cursor: pointer"
+                  class="pr-4 w-100"
+                  name="select"
+                  id="select"
+                  v-model="form.contract_type"
+                >
+                  <option style="color : blue !important" value disabled>نوع قرارداد</option>
+
+                  <option value="فروش">فروش</option>
+                  <option value="حق العملکاری">حق العملکاری</option>
+                </select>
+              </div>
+              <div>
+                <v-img class="img ml-4" cover :src="require('@/assets/images/arrow.svg')"></v-img>
+              </div>
             </div>
           </v-col>
 
@@ -72,7 +81,7 @@
                 autocomplete="off"
                 required
               />
-              <label for="text"> شماره قرارداد</label>
+              <label for="text">شماره قرارداد</label>
             </div>
           </v-col>
 
@@ -85,14 +94,12 @@
                 autocomplete="off"
                 required
               />
-              <label for="text"> نوع خودرو</label>
+              <label for="text">نوع خودرو</label>
             </div>
           </v-col>
         </v-row>
 
-        <v-row
-          class="h-25 mt-8 mb-md-10 d-flex mx-5 justify-center align-center row"
-        >
+        <v-row class="h-25 mt-8 mb-md-10 d-flex mx-5 justify-center align-center row">
           <v-col class="pa-0" cols="12">
             <div class="box w-100 d-flex justify-space-between align-center">
               <div class="bb w-100">
@@ -103,18 +110,16 @@
                   id="select"
                   v-model="form.status"
                 >
-                  <option style="color : blue !important" value="" disabled >وضعیت قرارداد</option>
-                  <option value="تمام شده" selected>تمام شده</option>
-                  <option value="تمدید شده">تمدید شده</option>
+                  <option style="color : blue !important" value disabled>وضعیت قرارداد</option>
+                  <option value="تمام شده" selected> تاخیر خورده</option>
+                  <option value="تمدید شده"> تسویه شده</option>
                   <option value="در حال انجام">در حال انجام</option>
+                  
+                  <option value="در حال انجام">تمدید شده  </option>
                 </select>
               </div>
               <div>
-                <v-img
-                  class="img ml-4"
-                  cover
-                  :src="require('@/assets/images/arrow.svg')"
-                ></v-img>
+                <v-img class="img ml-4" cover :src="require('@/assets/images/arrow.svg')"></v-img>
               </div>
             </div>
           </v-col>
@@ -123,17 +128,9 @@
         <v-row class="mx-5">
           <v-col cols="12" md="4"></v-col>
           <v-col cols="12" md="4"></v-col>
-          <v-col
-            class="d-flex justify-space-between align-center"
-            cols="12"
-            md="4"
-          >
-            <v-btn @click="goToUpload" class="text-white bg-secondary rounded-lg w-50">
-              مرحله بعد
-            </v-btn>
-            <v-btn class="text-white bg-secondary rounded-lg mr-1 w-50">
-              انصراف
-            </v-btn>
+          <v-col class="d-flex justify-space-between align-center" cols="12" md="4">
+            <v-btn @click="goToUpload" class="text-white bg-secondary rounded-lg w-50">مرحله بعد</v-btn>
+            <v-btn class="text-white bg-secondary rounded-lg mr-1 w-50">انصراف</v-btn>
           </v-col>
         </v-row>
       </v-col>
@@ -143,24 +140,24 @@
 
 <script>
 export default {
-  data(){
-    return{
-      form : {
-        first_name : '',
-        last_name : '',
-        national_code : '',
-        contract_type : '',
-        contract_number : '',
-        car_type : '',
-        status : ''
+  data() {
+    return {
+      form: {
+        first_name: "",
+        last_name: "",
+        national_code: "",
+        contract_type: "",
+        contract_number: "",
+        car_type: "",
+        status: ""
       }
-    }
+    };
   },
   methods: {
     goToUpload() {
       // JSON.stringify(user)
-      localStorage.setItem('form',JSON.stringify(this.form))
-      this.$emit('appendState', false)
+      localStorage.setItem("form", JSON.stringify(this.form));
+      this.$emit("appendState", false);
     }
   }
 };

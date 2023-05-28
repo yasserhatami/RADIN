@@ -3,9 +3,9 @@
     <v-img
       :src="require('@/assets/images/managerpm.png')"
       class="align-start  img"
-      cover
+      
     >
-      <v-card-title class="title mt-1"
+      <v-card-title class="title mt-3 mr-7"
         >پیام مدیر عامل</v-card-title
       >
       <div class="d-flex align-center justify-center">
